@@ -1,0 +1,61 @@
+-- Basic select Statement
+select * from employees;
+
+-- how to use dictinct to return different values used to avoid repetation 
+select DISTINCT first_name from employees;
+
+--How to selelct specific columns
+select employee_id,first_name,salary from employees;
+
+--Arithemetic Expressions
+select first_name, last_name, salary, salary+250 from employees;
+
+select first_name || ' ' || last_name as Name, salary, 12*(salary+100) from employees;
+
+--null value
+select first_name, last_name, job_id, salary, commission_pct from employees;
+select first_name, last_name, 12*salary*commission_pct from employees;
+
+
+--Using Column Aliases
+select first_name as Name, commission_pct comm from employees;
+select first_name "Name", salary*12 "Annual Salary" from employees;
+
+--Concatenation Operator
+select first_name||' '||job_id As "Employees" from employees;
+select first_name ||' is a '|| job_id As "Employee Details" from employees;
+
+
+--using the order by Clause
+select first_name, job_id, department_id, hire_date from employees order by hire_date;
+
+--Sorting -- using to sort descending order
+select first_name, job_id, department_id, hire_date from employees order by hire_date DESC;
+-- used to order annual salary from bigger to smallest annual salary
+select employee_id, first_name, last_name, salary*12 annsal from employees order by annsal;
+
+--Sorting 
+select first_name, job_id, department_id, hire_date from employees order by 3;
+-- sorting first the department id then salary desc
+select first_name, department_id, salary from employees order by department_id, salary DESC;
+
+--using the single-ampersand substition variable
+select employee_id, first_name, salary, department_id from employees where employee_id=&employee_num;
+
+--character and date values with substituation variabales
+select first_name, last_name, department_id, salary*12 from employees where job_id='&job_title';
+
+
+--showen more the expression
+select employee_id, first_name, last_name, job_id, &column_name from employees where &condition order by &order_column;
+
+--using the double- ampersand subsitution variable && used to
+select employee_id, first_name, last_name, job_id, &&column_name from employees order by &column_name;
+
+
+--define command first we have to define the vaiable to 200
+define employee_num=200;
+select employee_id, last_name, salary, department_id from employees where employee_id=&employee_num;
+undefine employee_num
+
+
